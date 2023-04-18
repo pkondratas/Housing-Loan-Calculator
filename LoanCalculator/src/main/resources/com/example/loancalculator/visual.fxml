@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="817.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.loancalculator.Controller">
+   <left>
+
+
+      <Pane prefHeight="574.0" prefWidth="290.0" BorderPane.alignment="CENTER">
+         <RadioButton fx:id="linear" layoutX="62.0" layoutY="55.0" mnemonicParsing="false" selected="true" text="Linear">
+            <padding>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <toggleGroup>
+               <ToggleGroup fx:id="toggleGroup" />
+            </toggleGroup>
+         </RadioButton>
+         <RadioButton fx:id="annuity" layoutX="128.0" layoutY="55.0" mnemonicParsing="false" text="Annuity" toggleGroup="$toggleGroup">
+            <padding>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+         </RadioButton>
+         <TextField fx:id="termYears" layoutX="111.0" layoutY="145.0" prefHeight="23.0" prefWidth="65.0" promptText="years"/>
+         <TextField fx:id="termMonths" layoutX="195.0" layoutY="145.0" prefHeight="23.0" prefWidth="65.0" promptText="months"/>
+         <Text layoutX="177.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="y." x="3.0" />
+         <Text layoutX="258.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="m." x="3.0" />
+         <TextField fx:id="amount" layoutX="111.0" layoutY="101.0" prefHeight="25.0" prefWidth="150.0" promptText="00000"/>
+         <Text layoutX="63.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount:" />
+         <Text layoutX="79.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Term:" />
+         <Text layoutX="8.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yearly interest rate:" />
+         <TextField fx:id="interestRate" layoutX="111.0" layoutY="189.0" promptText="0,00%"/>
+         <CheckBox fx:id="delay" layoutX="63.0" layoutY="236.0" mnemonicParsing="false" onAction="#delayHandle" text="Delay (optional)" />
+         <TextField fx:id="delayMonths" disable="true" layoutX="198.0" layoutY="270.0" prefHeight="23.0" prefWidth="62.0" promptText="month" />
+         <TextField fx:id="delayStart" disable="true" layoutX="82.0" layoutY="270.0" prefHeight="23.0" prefWidth="62.0" promptText="month" />
+         <Text layoutX="153.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Months:" />
+         <Text layoutX="50.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From:" />
+         <Text layoutX="8.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yearly interest rate:" />
+         <TextField fx:id="delayInterest" disable="true" layoutX="111.0" layoutY="314.0" promptText="0,00%" />
+         <TextField fx:id="showTo" layoutX="198.0" layoutY="421.0" prefHeight="23.0" prefWidth="62.0" promptText="month" />
+         <TextField fx:id="showFrom" layoutX="111.0" layoutY="421.0" prefHeight="23.0" prefWidth="62.0" promptText="month" />
+         <Text layoutX="48.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show from" />
+         <Text layoutX="180.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to" />
+         <Button fx:id="save" disable="true" layoutX="173.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleSave" prefWidth="80.0" text="Save to file" />
+         <Button fx:id="graph" disable="true" layoutX="78.0" layoutY="518.0" mnemonicParsing="false" onAction="#handleGraph" prefWidth="80.0" text="Show graph" />
+         <Button fx:id="calculate" layoutX="173.0" layoutY="362.0" mnemonicParsing="false" onAction="#calculate" prefWidth="80.0" text="Calculate" />
+         <Text layoutX="70.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Housing Loan Calculator">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Text>
+         <Label fx:id="inputAlert" layoutX="85.0" layoutY="366.0" text="Incorrect input" textFill="red" visible="false" />
+         <Button fx:id="reset" disable="true" layoutX="203.0" layoutY="457.0" mnemonicParsing="false" onAction="#reset" prefWidth="50.0" text="Reset" />
+         <Button fx:id="filter" disable="true" layoutX="141.0" layoutY="457.0" mnemonicParsing="false" onAction="#filter" prefWidth="50.0" text="Filter" />
+         <Label fx:id="saveError" layoutX="151.0" layoutY="548.0" text="Something went wrong" textFill="red" visible="false" />
+      </Pane>
+   </left>
+   <center>
+      <TableView fx:id="tableView" prefHeight="439.0" prefWidth="497.0" BorderPane.alignment="TOP_LEFT">
+        <columns>
+          <TableColumn fx:id="tableMonth" prefWidth="55.999998450279236" text="Month" />
+          <TableColumn fx:id="tableLeft" prefWidth="110.0" text="Left" />
+            <TableColumn fx:id="tableCredit" prefWidth="110.0" text="Credit" />
+            <TableColumn fx:id="tableInterest" prefWidth="110.0" text="Interest" />
+            <TableColumn fx:id="tableTotal" prefWidth="108.80003051757814" text="Total" />
+        </columns>
+         <BorderPane.margin>
+            <Insets bottom="100.0" right="30.0" top="30.0" />
+         </BorderPane.margin>
+      </TableView>
+   </center>
+</BorderPane>
